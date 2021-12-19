@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Hotel Booking Slot</title>
+    <style>
+        
+        *{box-sizing: border border-box;}
+        body{ background-image: url("https://wallpapercave.com/wp/wp1846068.jpg");
+        background-repeat:repeat-y;
+        background-size:cover;
+                color: black;
+                display:flex;
+                flex-direction:column ;
+                align-items: center;
+                justify-items: center;
+                height: 100vh;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                margin:0;
+                }
+
+
+        .screen ul{float:right;
+
+        }
+      
+      .screen ul li{
+          display: inline-block;
+          padding: 0 50px 0 70px ;
+
+
+      }
+    .screen ul li:hover{
+           cursor:zoom-in;
+           transform:scale(1.3);
+       }
+       
+        .container{
+            perspective: 1000px;
+           margin-bottom:30px;
+        }
+      
+       .seat{
+           background-color:#92a8d1;
+           text-align:center;
+           font-size: 20px;
+           height:52px;
+           width:45px;
+           margin:8px;
+           border-top-left-radius: 20px;
+           border-top-right-radius: 20px;
+       }
+
+       .seat.selected{
+           background-color:rgb(16, 216, 156);
+       }
+       .seat.couples{
+           background-color: #ffa6a4;
+       }
+       .seat.family{
+           background-color: #034f84;
+       }
+       .seat.sold{
+           background-color:#fc8a48;
+       }
+
+       .seat:nth-of-type(2){margin-right: 25px;}
+ 
+       .seat:nth-of-type(4){margin-right: 25px;}
+      
+
+       .seat:nth-last-of-type(2){margin-left: 25px;}
+
+       .seat:not(.sold):hover{
+           cursor:pointer;
+           transform:scale(1.5);
+       }
+
+       .showcase .seat:not(.sold):hover{
+           cursor:default;
+           transform:scale(1.4);
+
+        
+         }
+        
+
+        .showcase{
+            background-color: rgb(255, 203, 89);
+            padding:5px 10px;
+            border-radius:5px;
+            color:black;
+            font-size: 20px;
+            list-style-type:none;
+            display:flex;
+            justify-content: space-between;
+
+
+        }
+
+        .showcase li{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin:0 10px
+        }
+        .showcase li small{
+            margin-left:2px;
+        }
+        .row{
+            display:flex;
+        }
+       .banners img{margin-left:-960px;
+                   margin-top:-700px;
+                   height:690px;
+                   }
+        .banners-2 img{margin-left:1150px;
+                   margin-top:-700px;
+                   height:400px;
+                   }
+
+                   .popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popup{
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+    padding:5px;
+}
+.popup .popuptext {
+  visibility: hidden;
+  font-size: 20px;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.note{ color:chocolate;
+    font-size: 20px;
+    border:none;}
+
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+    </style>
+
+
+
+
+
+
+
+
+
+
+ <!--comments-->
+</head>
+<body>
+    <div class="screen">
+        <ul>
+           
+           
+            
+            <li class="logo"><a href="hackethon2.html">
+           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvMiyNEWgnfKD4ILhRT7P8G-xlrzW63KzEIJ0osXnFdqChilb1l6fgA3Fmvz4W9L8J9uo&usqp=CAU alt=" style="border-radius:20px;"></a></li>
+
+           <li><a href="#" ><img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/9f/a6/a1/retreat-hotel-spa.jpg" alt="" style="height:230px;border-radius:20px;border:8px dotted goldenrod;padding:0; "></a></li>
+            <li><a href="hackethon4.html"><img src="https://5.imimg.com/data5/SELLER/Default/2021/4/WW/DI/EP/3969670/hotel-name-plates-500x500.jpeg" alt="" style="height:230px;border-radius:20px;"></a></li>
+           
+         
+           
+        </ul>
+        
+    </div>
+     <div class="heading" style="font-size: 35px;color: goldenrod;padding: 5px;">RETREAT HOTEL & SPA WELCOMES YOU!</div>
+ <div class="seatcontainer">
+     <label style="font-size:20px ; color: thistle;">Select a type of seat</label>
+     <select id="typeofseat" style=" background-color:white;
+     border:0;
+     font-family: monospace;
+     border-radius: 5px;
+     text-align: center;
+     font-size:20px ;
+     margin-left:10px;
+     padding:5px 10px 5px 10px;
+     -moz-appearance:none;
+     appearance: none;">
+         
+         <option value="15">Non-AC(15rs)</option>
+         <option value="25">AC(25rs)</option>
+         
+     </select>
+ </div>
+ 
+ 
+<ul class="showcase">
+    
+
+    <li>
+        <div class="seat"></div>
+        <small>Available seats</small>
+    </li>
+    <li>
+        <div class="seat selected"></div>
+        <small>Seat selected</small>
+    </li>
+   
+    <li>
+        <div class=" seat sold"><br>&#9747</div>
+        <small>Reserved</small>
+    </li>
+
+    <li>
+        <div class="seat couples"> <br>&#9829</div>
+        <small>Best seat for couples </small>
+    </li>
+
+    <li>
+        <div class="seat family"><br>&#10070</div>
+        <small>Best seat for family</small>
+    </li>
+
+</ul>
+
+<div class="container">
+    
+
+<div class="row">
+  <div class="seat" >1</div>
+  <hr>
+  <div class="seat">2</div> 
+  <div class="seat">3</div>
+  <hr>
+  
+  <div class="seat">4</div>
+  
+ 
+  <div class="seat family">5<br>&#10070</div>
+  <div class="seat family">6<br>&#10070</div>
+  <hr>
+  <div class="seat family">7<br>&#10070</div>
+  <div class="seat family">8<br>&#10070</div>
+  <div class="seat couples">9<br>&#9829</div>
+  <hr>
+  <div class="seat couples">10<br>&#9829</div>
+</div>
+
+<div class="row">
+
+    <div class="seat couples">11 <br>&#9829
+    </div>
+    <hr>
+  <div class="seat couples">12<br>&#9829</div>
+ 
+  <div class="seat sold">13<br>&#9747</div>
+  <hr>
+  <div class="seat sold">14<br>&#9747</div>
+  
+  <div class="seat">15</div>
+  <div class="seat">16</div>
+  <hr>
+  <div class="seat">17</div>
+  <div class="seat">18</div>
+  <div class="seat">19</div>
+  <hr>
+  <div class="seat">20</div>
+ </div>
+
+
+ <div class="row">
+    <div class="seat">21</div>
+    <hr>
+  <div class="seat">22</div>
+  
+  <div class="seat">23</div>
+  <hr>
+  <div class="seat">24</div>
+  <div class="seat">25</div>
+  <div class="seat sold">26<br>&#9747</div>
+  <hr>
+  <div class="seat sold">27<br>&#9747</div>
+  <div class="seat sold">28<br>&#9747</div>
+  <div class="seat couples">29<br>&#9829</div>
+  <hr>
+  <div class="seat couples">30<br>&#9829</div>
+ </div>
+</div>
+
+<p class="text" style="color:thistle;;font-size: 25px;">
+    You have select <span id="count" style="color:gold;">0</span> Seat for a price in Rs <span id="total"  style="color:gold;">0</span>
+</p>
+
+<div class="popup" onclick="myFunction()">CLICK HERE TO RESERVE YOUR TABLE
+  
+    <span class="popuptext" id="myPopup">THANKS FOR BOOKING</span>
+  </div>
+  <div class="note">NOTE: THE AMOUNT FOR BOOKING WILL ADDED IN HOTEL BILL </div>
+
+<div class="banners">
+    <img src="https://cdn.teachercreated.com/20210910/covers/900sqp/9035.png" alt="">
+</div>
+
+<div class="banners-2">
+    <img src="https://img.freepik.com/free-vector/food-banner-top-view-people-enjoying-indian-food-together_218660-584.jpg?size=338&ext=jpg" alt="">
+</div> 
+
+
+
+
+
+<script src="hackethon2.js">
+  </script>
+</body>
+</html>
